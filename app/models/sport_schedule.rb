@@ -17,7 +17,17 @@ class SportSchedule < ApplicationRecord
     sunday: 6
   }
 
+  rails_admin do
+    edit do
+      exclude_fields :enrollments, :attendances
+    end
+  end
+
   def name
-    "#{sport.name} - #{day_of_week.capitalize} #{start_time.strftime('%H:%M')}"
+    if persisted?
+      "#{sport&.name} - #{day_of_week.capitalize} #{start_time.strftime('%H:%M')}"
+    else
+      "New Schedule"
+    end
   end
 end

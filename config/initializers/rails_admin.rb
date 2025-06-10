@@ -29,4 +29,21 @@ RailsAdmin.config do |config|
   config.model "Admin" do
     visible false
   end
+
+  config.model "AttendanceRecord" do
+    visible false
+
+    edit do
+      field :attendee_type, :enum do
+        enum do
+          [ "Student", "Coach" ]
+        end
+      end
+
+      field :attendee_id, :integer do
+        label "ID del asistente"
+        help "Debes ingresar manualmente el ID del Coach o Student seg\u00FAn el tipo."
+      end
+    end
+  end
 end

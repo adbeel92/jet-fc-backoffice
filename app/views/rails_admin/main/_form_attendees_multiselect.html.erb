@@ -1,0 +1,35 @@
+<% students = form.object.sport_schedule&.enrollments&.includes(:student)&.map(&:student)&.sort_by(&:name) || [] %>
+<% coaches = form.object.sport_schedule&.coaches&.sort_by(&:name) || [] %>
+<% selected = form.object.attendee_selection_ids || [] %>
+
+<div class="form-group">
+  <strong>Alumnos</strong>
+  <% students.each do |student| %>
+    <% value = "Student-#{student.id}" %>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox"
+               name="attendance[attendee_selection_ids][]"
+               value="<%= value %>"
+               <%= 'checked' if selected.include?(value) %>>
+        Alumno - <%= student.name %>
+      </label>
+    </div>
+  <% end %>
+</div>
+
+<div class="form-group">
+  <strong>Profesores</strong>
+  <% coaches.each do |coach| %>
+    <% value = "Coach-#{coach.id}" %>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox"
+               name="attendance[attendee_selection_ids][]"
+               value="<%= value %>"
+               <%= 'checked' if selected.include?(value) %>>
+        Profesor - <%= coach.name %>
+      </label>
+    </div>
+  <% end %>
+</div>
