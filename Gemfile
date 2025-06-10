@@ -1,6 +1,5 @@
 source "https://rubygems.org"
 
-gem "audited"
 gem "bootsnap", require: false # Reduces boot times through caching; required in config/boot.rb
 # gem "bcrypt", "~> 3.1.7" # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 gem "cssbundling-rails"
@@ -10,6 +9,7 @@ gem "importmap-rails" # Use JavaScript with ESM import maps [https://github.com/
 gem "image_processing", "~> 1.2" # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "jbuilder" # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "kamal", require: false # Deploy this application anywhere as a Docker container [https://kamal-deploy.org]
+gem "paper_trail"
 gem "pg", "~> 1.1" # Use postgresql as the database for Active Record
 gem "propshaft" # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "puma", ">= 5.0" # Use the Puma web server [https://github.com/puma/puma]

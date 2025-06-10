@@ -2,7 +2,6 @@
 
 one:
   student: one
-  sport_schedule: one
   enrollment_type: MyString
   price_per_period: 9.99
   start_date: 2025-06-10
@@ -10,7 +9,6 @@ one:
 
 two:
   student: two
-  sport_schedule: two
   enrollment_type: MyString
   price_per_period: 9.99
   start_date: 2025-06-10

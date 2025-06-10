@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_10_135423) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_10_151150) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -49,28 +49,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_10_135423) do
     t.index ["sport_schedule_id"], name: "index_attendances_on_sport_schedule_id"
   end
 
-  create_table "audits", force: :cascade do |t|
-    t.integer "auditable_id"
-    t.string "auditable_type"
-    t.integer "associated_id"
-    t.string "associated_type"
-    t.integer "user_id"
-    t.string "user_type"
-    t.string "username"
-    t.string "action"
-    t.text "audited_changes"
-    t.integer "version", default: 0
-    t.string "comment"
-    t.string "remote_address"
-    t.string "request_uuid"
-    t.datetime "created_at"
-    t.index ["associated_type", "associated_id"], name: "associated_index"
-    t.index ["auditable_type", "auditable_id", "version"], name: "auditable_index"
-    t.index ["created_at"], name: "index_audits_on_created_at"
-    t.index ["request_uuid"], name: "index_audits_on_request_uuid"
-    t.index ["user_id", "user_type"], name: "user_index"
-  end
-
   create_table "coach_payments", force: :cascade do |t|
     t.bigint "coach_id", null: false
     t.decimal "amount"
@@ -89,17 +67,33 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_10_135423) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "coaches_sport_schedules", id: false, force: :cascade do |t|
+    t.bigint "coach_id", null: false
+    t.bigint "sport_schedule_id", null: false
+    t.index ["coach_id", "sport_schedule_id"], name: "idx_on_coach_id_sport_schedule_id_746dc0c2cf"
+    t.index ["coach_id"], name: "index_coaches_sport_schedules_on_coach_id"
+    t.index ["sport_schedule_id", "coach_id"], name: "idx_on_sport_schedule_id_coach_id_7fb8bd572a"
+    t.index ["sport_schedule_id"], name: "index_coaches_sport_schedules_on_sport_schedule_id"
+  end
+
   create_table "enrollments", force: :cascade do |t|
     t.bigint "student_id", null: false
-    t.bigint "sport_schedule_id", null: false
+    t.bigint "sport_id", null: false
     t.string "enrollment_type"
     t.decimal "price_per_period"
     t.date "start_date"
     t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["sport_schedule_id"], name: "index_enrollments_on_sport_schedule_id"
+    t.index ["sport_id"], name: "index_enrollments_on_sport_id"
     t.index ["student_id"], name: "index_enrollments_on_student_id"
+  end
+
+  create_table "enrollments_sport_schedules", id: false, force: :cascade do |t|
+    t.bigint "enrollment_id", null: false
+    t.bigint "sport_schedule_id", null: false
+    t.index ["enrollment_id"], name: "index_enrollments_sport_schedules_on_enrollment_id"
+    t.index ["sport_schedule_id"], name: "index_enrollments_sport_schedules_on_sport_schedule_id"
   end
 
   create_table "expenses", force: :cascade do |t|
@@ -111,14 +105,21 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_10_135423) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "sport_schedules", force: :cascade do |t|
-    t.bigint "sport_id", null: false
-    t.integer "day_of_week"
-    t.time "start_time"
-    t.time "end_time"
-    t.string "location"
+  create_table "locations", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "sport_schedules", force: :cascade do |t|
+    t.bigint "sport_id", null: false
+    t.bigint "location_id", null: false
+    t.integer "day_of_week"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_sport_schedules_on_location_id"
     t.index ["sport_id"], name: "index_sport_schedules_on_sport_id"
   end
 
@@ -146,11 +147,23 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_10_135423) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "versions", force: :cascade do |t|
+    t.string "whodunnit"
+    t.datetime "created_at"
+    t.bigint "item_id", null: false
+    t.string "item_type", null: false
+    t.string "event", null: false
+    t.text "object"
+    t.text "object_changes"
+    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
+  end
+
   add_foreign_key "attendance_records", "attendances"
   add_foreign_key "attendances", "sport_schedules"
   add_foreign_key "coach_payments", "coaches"
-  add_foreign_key "enrollments", "sport_schedules"
+  add_foreign_key "enrollments", "sports"
   add_foreign_key "enrollments", "students"
+  add_foreign_key "sport_schedules", "locations"
   add_foreign_key "sport_schedules", "sports"
   add_foreign_key "student_payments", "students"
 end
