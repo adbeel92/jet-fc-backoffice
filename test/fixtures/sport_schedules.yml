@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sport: one
+  day_of_week: 1
+  start_time: 2025-06-10 07:49:45
+  end_time: 2025-06-10 07:49:45
+  location: MyString
+
+two:
+  sport: two
+  day_of_week: 1
+  start_time: 2025-06-10 07:49:45
+  end_time: 2025-06-10 07:49:45
+  location: MyString
