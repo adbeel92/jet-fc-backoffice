@@ -1,5 +1,5 @@
 RailsAdmin.config do |config|
-  config.main_app_name = "JET F\u00FAtbol Club - ADMIN"
+  config.main_app_name = "JET F\u00FAtbol Club"
   config.asset_source = :importmap
 
   ### Popular gems integration
