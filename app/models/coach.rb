@@ -9,6 +9,11 @@ class Coach < ApplicationRecord
     edit do
       field :name
       field :birthdate
+      field :phone
+      field :emergency_contact_name
+      field :emergency_contact_phone
+      field :address
+      field :observations
     end
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_10_151150) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_10_174600) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -62,9 +62,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_10_151150) do
 
   create_table "coaches", force: :cascade do |t|
     t.string "name"
-    t.datetime "birthdate"
+    t.date "birthdate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "phone"
+    t.string "emergency_contact_name"
+    t.string "emergency_contact_phone"
+    t.string "address"
+    t.text "observations"
   end
 
   create_table "coaches_sport_schedules", id: false, force: :cascade do |t|
@@ -142,9 +147,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_10_151150) do
 
   create_table "students", force: :cascade do |t|
     t.string "name"
-    t.datetime "birthdate"
+    t.date "birthdate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "phone"
+    t.string "tutor_name"
+    t.string "emergency_contact_name"
+    t.string "emergency_contact_phone"
+    t.string "address"
+    t.text "observations"
   end
 
   create_table "versions", force: :cascade do |t|
