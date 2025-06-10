@@ -6,9 +6,9 @@ class Enrollment < ApplicationRecord
   has_and_belongs_to_many :sport_schedules
 
   enum :enrollment_type, {
-    monthly: "monthly",
-    weekly: "weekly",
-    per_session: "per_session"
+    monthly: 0,
+    weekly: 1,
+    per_session: 2
   }
 
   validates :price_per_period, presence: true, numericality: { greater_than: 0 }

@@ -1,0 +1,69 @@
+es:
+  activerecord:
+    models:
+      sport: "Deporte"
+      location: "Ubicación"
+      sport_schedule: "Horario de clase"
+      coach: "Profesor"
+      student: "Alumno"
+      enrollment: "Inscripción"
+      attendance: "Asistencia"
+      student_payment: "Pago del alumno"
+      coach_payment: "Pago al profesor"
+      expense: "Gasto"
+
+    attributes:
+      sport:
+        name: "Nombre del deporte"
+      location:
+        name: "Nombre de la ubicación"
+      sport_schedule:
+        sport: "Deporte"
+        location: "Ubicación"
+        day_of_week: "Día de la semana"
+        start_time: "Hora de inicio"
+        end_time: "Hora de fin"
+        coaches: "Profesores"
+      enrollment:
+        student: "Alumno"
+        sport: "Deporte"
+        sport_schedules: "Horarios"
+        enrollment_type: "Tipo de inscripción"
+        price_per_period: "Precio por periodo"
+        start_date: "Fecha de inicio"
+        end_date: "Fecha de fin"
+      attendance:
+        sport_schedule: "Horario"
+        attended_on: "Fecha de asistencia"
+        attendance_records: "Asistentes"
+      student_payment:
+        amount: "Monto"
+        payment_type: "Tipo de pago"
+        paid_on: "Fecha de pago"
+        reference: "Referencia"
+      coach_payment:
+        amount: "Monto"
+        paid_on: "Fecha de pago"
+        concept: "Concepto"
+        notes: "Notas"
+      expense:
+        concept: "Concepto"
+        amount: "Monto"
+        paid_on: "Fecha de gasto"
+        notes: "Notas"
+
+  enums:
+    enrollment:
+      enrollment_type:
+        monthly: "Mensual"
+        weekly: "Semanal"
+        per_session: "Por clase"
+    sport_schedule:
+      day_of_week:
+        monday: "Lunes"
+        tuesday: "Martes"
+        wednesday: "Miércoles"
+        thursday: "Jueves"
+        friday: "Viernes"
+        saturday: "Sábado"
+        sunday: "Domingo"

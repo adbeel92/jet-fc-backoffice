@@ -16,4 +16,8 @@ class SportSchedule < ApplicationRecord
     saturday: 5,
     sunday: 6
   }
+
+  def name
+    "#{sport.name} - #{day_of_week.capitalize} #{start_time.strftime('%H:%M')}"
+  end
 end

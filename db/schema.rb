@@ -53,7 +53,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_10_151150) do
     t.bigint "coach_id", null: false
     t.decimal "amount"
     t.date "paid_on"
-    t.string "concept"
+    t.integer "concept"
     t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -79,7 +79,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_10_151150) do
   create_table "enrollments", force: :cascade do |t|
     t.bigint "student_id", null: false
     t.bigint "sport_id", null: false
-    t.string "enrollment_type"
+    t.integer "enrollment_type"
     t.decimal "price_per_period"
     t.date "start_date"
     t.date "end_date"
@@ -132,7 +132,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_10_151150) do
   create_table "student_payments", force: :cascade do |t|
     t.bigint "student_id", null: false
     t.decimal "amount"
-    t.string "payment_type"
+    t.integer "payment_type"
     t.date "paid_on"
     t.string "reference"
     t.datetime "created_at", null: false

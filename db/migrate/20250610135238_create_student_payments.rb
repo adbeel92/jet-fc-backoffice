@@ -3,7 +3,7 @@ class CreateStudentPayments < ActiveRecord::Migration[8.0]
     create_table :student_payments do |t|
       t.references :student, null: false, foreign_key: true
       t.decimal :amount
-      t.string :payment_type
+      t.integer :payment_type
       t.date :paid_on
       t.string :reference
 

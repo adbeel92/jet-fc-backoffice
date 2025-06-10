@@ -21,6 +21,7 @@ module JetFc
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
+    config.i18n.default_locale = :es
     config.time_zone = "America/Mexico_City"
     config.active_record.yaml_column_permitted_classes = [
       ActiveSupport::HashWithIndifferentAccess,

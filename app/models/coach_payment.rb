@@ -4,9 +4,9 @@ class CoachPayment < ApplicationRecord
   belongs_to :coach
 
   enum :concept, {
-    per_week: "per_week",
-    per_month: "per_month",
-    per_session: "per_session"
+    per_month: 0,
+    per_week: 1,
+    per_session: 2
   }
 
   validates :amount, presence: true, numericality: { greater_than: 0 }

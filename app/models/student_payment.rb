@@ -4,9 +4,9 @@ class StudentPayment < ApplicationRecord
   belongs_to :student
 
   enum :payment_type, {
-    monthly: "monthly",
-    weekly: "weekly",
-    per_session: "per_session"
+    monthly: 0,
+    weekly: 1,
+    per_session: 2
   }
 
   validates :amount, presence: true, numericality: { greater_than: 0 }
