@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_10_174600) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_10_182958) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -27,6 +27,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_10_174600) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name", default: "", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
@@ -66,10 +67,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_10_174600) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "phone"
+    t.string "tutor_name"
     t.string "emergency_contact_name"
     t.string "emergency_contact_phone"
     t.string "address"
     t.text "observations"
+    t.string "last_name", default: "", null: false
   end
 
   create_table "coaches_sport_schedules", id: false, force: :cascade do |t|
@@ -108,6 +111,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_10_174600) do
     t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "admin_id"
+    t.index ["admin_id"], name: "index_expenses_on_admin_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -156,6 +161,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_10_174600) do
     t.string "emergency_contact_phone"
     t.string "address"
     t.text "observations"
+    t.string "last_name", default: "", null: false
+    t.string "nickname"
   end
 
   create_table "versions", force: :cascade do |t|
@@ -174,6 +181,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_10_174600) do
   add_foreign_key "coach_payments", "coaches"
   add_foreign_key "enrollments", "sports"
   add_foreign_key "enrollments", "students"
+  add_foreign_key "expenses", "admins"
   add_foreign_key "sport_schedules", "locations"
   add_foreign_key "sport_schedules", "sports"
   add_foreign_key "student_payments", "students"

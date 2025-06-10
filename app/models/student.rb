@@ -8,6 +8,8 @@ class Student < ApplicationRecord
   rails_admin do
     edit do
       field :name
+      field :last_name
+      field :nickname
       field :birthdate
       field :phone
       field :emergency_contact_name

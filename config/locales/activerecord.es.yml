@@ -13,6 +13,25 @@ es:
       expense: "Gasto"
 
     attributes:
+      student:
+        name: "Nombre"
+        last_name: "Apellido"
+        nickname: "Apodo"
+        birthdate: "Fecha de nacimiento"
+        phone: "Teléfono del alumno"
+        emergency_contact_name: "Nombre del contacto de emergencia"
+        emergency_contact_phone: "Teléfono del contacto de emergencia"
+        address: "Dirección del alumno"
+        observations: "Observaciones"
+      coach:
+        name: "Nombre del profesor"
+        last_name: "Apellido del profesor"
+        birthdate: "Fecha de nacimiento"
+        phone: "Teléfono del profesor"
+        emergency_contact_name: "Nombre del contacto de emergencia"
+        emergency_contact_phone: "Teléfono del contacto de emergencia"
+        address: "Dirección del profesor"
+        observations: "Observaciones"
       sport:
         name: "Nombre del deporte"
       location:
@@ -51,6 +70,7 @@ es:
         amount: "Monto"
         paid_on: "Fecha de gasto"
         notes: "Notas"
+        admin: "Pagado por"
 
   enums:
     enrollment:
