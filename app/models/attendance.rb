@@ -5,6 +5,14 @@ class Attendance < ApplicationRecord
   has_many :attendance_records, dependent: :destroy
 
   rails_admin do
+    list do
+      field :id
+      field :sport_schedule
+      field :attended_on
+      field :created_at
+      field :updated_at
+    end
+
     edit do
       field :sport_schedule
       field :attended_on

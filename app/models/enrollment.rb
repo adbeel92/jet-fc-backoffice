@@ -11,5 +11,19 @@ class Enrollment < ApplicationRecord
     per_session: 2
   }
 
-  validates :price_per_period, presence: true, numericality: { greater_than: 0 }
+  validates :price_per_period, presence: true, numericality: { greater_or_equal_than: 0 }
+
+  rails_admin do
+    list do
+      field :id
+      field :student
+      field :sport
+      field :enrollment_type
+      field :price_per_period
+      field :start_date
+      field :end_date
+      field :created_at
+      field :updated_at
+    end
+  end
 end

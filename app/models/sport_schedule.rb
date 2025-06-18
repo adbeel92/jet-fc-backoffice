@@ -18,6 +18,22 @@ class SportSchedule < ApplicationRecord
   }
 
   rails_admin do
+    list do
+      field :id
+      field :sport
+      field :location
+      field :day_of_week
+      field :start_time do
+        formatted_value do
+          bindings[:object].start_time.strftime("%H:%M") if bindings[:object].start_time
+        end
+      end
+      field :end_time do
+        formatted_value do
+          bindings[:object].end_time.strftime("%H:%M") if bindings[:object].end_time
+        end
+      end
+    end
     edit do
       exclude_fields :enrollments, :attendances
     end

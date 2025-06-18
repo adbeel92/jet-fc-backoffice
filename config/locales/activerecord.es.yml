@@ -14,7 +14,7 @@ es:
 
     attributes:
       student:
-        name: "Nombre"
+        first_name: "Nombre"
         last_name: "Apellido"
         nickname: "Apodo"
         birthdate: "Fecha de nacimiento"
