@@ -44,7 +44,7 @@ class Student < ApplicationRecord
           ON sp.student_id = students.id
           AND sp.paid_on BETWEEN enrollments.start_date AND enrollments.end_date
       SQL
-      .where("enrollments.price_per_period > 0")
+      .where("enrollments.price_per_period > 0 AND enrollments.enrollment_type != 2") # exclude per_session enrollments
       .group("students.id")
       .select(<<~SQL.squish)
         students.*,
