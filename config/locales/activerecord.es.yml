@@ -49,8 +49,9 @@ es:
         sport_schedules: "Horarios"
         enrollment_type: "Tipo de inscripción"
         price_per_period: "Precio por periodo"
-        start_date: "Fecha de inicio"
-        end_date: "Fecha de fin"
+        start_date: "Fecha de inscripción"
+        current_period_start_date: "Fecha de inicio del periodo actual"
+        current_period_end_date: "Fecha de fin del periodo actual"
       attendance:
         sport_schedule: "Horario"
         attended_on: "Fecha de asistencia"

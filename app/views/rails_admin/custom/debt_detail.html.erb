@@ -1,0 +1,24 @@
+<h3>Detalle de Pagos por Periodo para <%= @student.name %></h3>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Inicio</th>
+      <th>Fin</th>
+      <th>Monto</th>
+      <th>Estado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @periods.each do |p| %>
+      <tr>
+        <td><%= p.start_date.strftime("%d/%m/%Y") %></td>
+        <td><%= p.end_date.strftime("%d/%m/%Y") %></td>
+        <td>$<%= p.amount %></td>
+        <td><%= p.status %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "Volver al listado", rails_admin.index_path("Student"), class: "btn btn-primary" %>

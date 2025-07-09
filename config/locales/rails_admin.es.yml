@@ -128,6 +128,10 @@ es:
         title: "Historial para %{model_label} '%{object_label}'"
         menu: "Historial"
         breadcrumb: "Historial"
+      debt_detail:
+        title: "Detalle de deudas"
+        menu: "Detalle de deudas"
+        breadcrumb: "Detalle de deudas"
     form:
       cancel: "Cancelar"
       basic_info: "Información básica"

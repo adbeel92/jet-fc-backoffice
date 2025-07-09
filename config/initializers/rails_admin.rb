@@ -25,6 +25,45 @@ RailsAdmin.config do |config|
   ## To disable Gravatar integration in Navigation Bar set to false
   # config.show_gravatar = true
 
+  config.actions do
+    dashboard                     # mandatory
+    index                         # mandatory
+    new do
+      except [ "Admin", "AttendanceRecord" ]
+    end
+    export
+    bulk_delete do
+      except [ "Admin", "AttendanceRecord" ]
+    end
+    show do
+      except [ "Admin", "AttendanceRecord" ]
+    end
+    edit do
+      except [ "Admin", "AttendanceRecord" ]
+    end
+    delete do
+      except [ "Admin", "AttendanceRecord" ]
+    end
+    show_in_app do
+      except [ "Admin", "AttendanceRecord" ]
+    end
+
+    history_index
+    history_show
+
+    member :debt_detail do
+      only [ "Student" ]
+      link_icon "icon-file" # Cambia el ícono si deseas
+
+      controller do
+        proc do
+          @student = Student.find(params[:id])
+          @periods = StudentDebtCalculator.new(@student).period_statuses
+          render template: "rails_admin/custom/debt_detail"
+        end
+      end
+    end
+  end
 
   config.model "Admin" do
     visible false
