@@ -132,6 +132,10 @@ es:
         title: "Detalle de deudas"
         menu: "Detalle de deudas"
         breadcrumb: "Detalle de deudas"
+      cancel_enrollment:
+        title: "Cancelar inscripción"
+        menu: "Cancelar inscripción"
+        breadcrumb: "Cancelar inscripción"
     form:
       cancel: "Cancelar"
       basic_info: "Información básica"

@@ -16,7 +16,8 @@ class Enrollment < ApplicationRecord
     cancelled: 2
   }
 
-  validates :price_per_period, :status, presence: true, numericality: { greater_or_equal_than: 0 }
+  validates :status, presence: true
+  validates :price_per_period, presence: true, numericality: { greater_or_equal_than: 0 }
 
   rails_admin do
     list do
@@ -24,7 +25,13 @@ class Enrollment < ApplicationRecord
       field :student
       field :sport
       field :enrollment_type
-      field :status
+      field :status_label do
+        label "Estado"
+        pretty_value do
+          value = bindings[:object].status_label
+          "<span>#{value}</span>".html_safe
+        end
+      end
       field :price_per_period
       field :start_date
       field :current_period_start_date
@@ -32,6 +39,21 @@ class Enrollment < ApplicationRecord
       field :created_at
       field :updated_at
     end
+
+    edit do
+      field :student
+      field :sport
+      field :enrollment_type
+      field :price_per_period
+      field :start_date
+      field :sport_schedules
+    end
+  end
+
+  def cancel!
+    self.cancelled_at = Time.current
+    self.status = :cancelled
+    save!
   end
 
   def current_period_start_date
@@ -49,6 +71,19 @@ class Enrollment < ApplicationRecord
       current_period_start_date.next_month - 1.day
     when "weekly"
       current_period_start_date + 6.days
+    end
+  end
+
+  def status_label
+    case status
+    when "active"
+      "🟢 Activo"
+    when "inactive"
+      "🟡 Inactivo"
+    when "cancelled"
+      "🔴 Cancelado"
+    else
+      "-"
     end
   end
 end

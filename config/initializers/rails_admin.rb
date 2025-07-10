@@ -1,3 +1,5 @@
+Rails.root.glob("lib/rails_admin/**/*.rb").each { |file| require file }
+
 RailsAdmin.config do |config|
   config.main_app_name = "JET F\u00FAtbol Club"
   config.asset_source = :importmap
@@ -50,6 +52,8 @@ RailsAdmin.config do |config|
 
     history_index
     history_show
+
+    cancel_enrollment
 
     member :debt_detail do
       only [ "Student" ]

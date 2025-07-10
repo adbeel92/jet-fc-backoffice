@@ -33,22 +33,25 @@ class StudentDebtCalculator
 
     @enrollments.each do |enrollment|
       current = enrollment.start_date
+      inactivated_at = enrollment.cancelled_at || enrollment.inactived_at
       today = Date.today
 
       while current < today
         end_date =
           if enrollment.enrollment_type == "monthly"
-            current.next_month - 1
+            current.next_month - 1.day
           else
-            current + 6
+            current + 6.days
           end
 
         periods << {
           start_date: current,
           end_date: end_date,
-          amount: enrollment.price_per_period.to_f
+          amount: enrollment.price_per_period.to_f,
+          status: enrollment.status
         }
 
+        break if inactivated_at.present? && inactivated_at <= end_date
         current =
           if enrollment.enrollment_type == "monthly"
             current.next_month
