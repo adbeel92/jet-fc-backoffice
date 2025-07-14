@@ -59,28 +59,27 @@ class Student < ApplicationRecord
   def debt_status_color
     calculator = StudentDebtCalculator.new(self)
     periods = calculator.period_statuses
+    has_active_enrollments = enrollments.any? { |e| e.status == "active" } ? :yes : :no
 
-    if periods.empty?
-      :black
-    elsif periods.all? { |p| p.status.include?("Pagado") }
-      :green
+    if periods.all? { |p| p.status.include?("Pagado") }
+      [ :green, has_active_enrollments ]
     elsif periods.any? { |p| p.status.include?("Pendiente") }
-      :red
+      [ :red, has_active_enrollments ]
     else
-      :yellow
+      [ :yellow, has_active_enrollments ]
     end
   end
 
   def debt_status_label
-    case debt_status_color
+    colors = debt_status_color
+    has_active_enrollments = colors[1] == :yes ? "" : "-sin inscripciones activas-"
+    case colors[0]
     when :green
-      "✅ Al día"
+      has_active_enrollments.empty? ? "✅ Al día" : has_active_enrollments
     when :yellow
-      "🟡 Pago parcial"
+      "🟡 Pago parcial #{has_active_enrollments}"
     when :red
-      "🔴 Con deuda"
-    else
-      "⚪️ Sin inscripciones"
+      "🔴 Con deuda #{has_active_enrollments}"
     end
   end
 end

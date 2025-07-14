@@ -47,6 +47,9 @@ class Enrollment < ApplicationRecord
       field :price_per_period
       field :start_date
       field :sport_schedules
+      field :cancelled_at do
+        visible { bindings[:object].cancelled_at.present? }
+      end
     end
   end
 

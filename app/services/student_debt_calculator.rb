@@ -1,6 +1,6 @@
 # app/services/student_debt_calculator.rb
 class StudentDebtCalculator
-  Period = Struct.new(:start_date, :end_date, :amount, :status)
+  Period = Struct.new(:start_date, :end_date, :amount, :status, :enrollment_status)
 
   def initialize(student)
     @student = student
@@ -15,13 +15,14 @@ class StudentDebtCalculator
     periods.map do |period|
       if remaining_balance >= period[:amount]
         remaining_balance -= period[:amount]
-        Period.new(period[:start_date], period[:end_date], period[:amount], "Pagado")
+        Period.new(period[:start_date], period[:end_date], period[:amount], "Pagado", period[:enrollment_status])
       elsif remaining_balance > 0
         partial = remaining_balance
         remaining_balance = 0
-        Period.new(period[:start_date], period[:end_date], period[:amount], "Parcial: #{partial}")
+        Period.new(period[:start_date], period[:end_date], period[:amount],
+        "Parcial: #{partial}", period[:enrollment_status])
       else
-        Period.new(period[:start_date], period[:end_date], period[:amount], "Pendiente")
+        Period.new(period[:start_date], period[:end_date], period[:amount], "Pendiente", period[:enrollment_status])
       end
     end
   end
@@ -48,10 +49,11 @@ class StudentDebtCalculator
           start_date: current,
           end_date: end_date,
           amount: enrollment.price_per_period.to_f,
-          status: enrollment.status
+          status: enrollment.status,
+          enrollment_status: enrollment.status
         }
 
-        break if inactivated_at.present? && inactivated_at <= end_date
+        break if inactivated_at.present? && inactivated_at <= end_date.end_of_day
         current =
           if enrollment.enrollment_type == "monthly"
             current.next_month

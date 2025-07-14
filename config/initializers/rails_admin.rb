@@ -53,20 +53,8 @@ RailsAdmin.config do |config|
     history_index
     history_show
 
+    debt_detail
     cancel_enrollment
-
-    member :debt_detail do
-      only [ "Student" ]
-      link_icon "icon-file" # Cambia el ícono si deseas
-
-      controller do
-        proc do
-          @student = Student.find(params[:id])
-          @periods = StudentDebtCalculator.new(@student).period_statuses
-          render template: "rails_admin/custom/debt_detail"
-        end
-      end
-    end
   end
 
   config.model "Admin" do
