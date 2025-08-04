@@ -10,7 +10,7 @@ gem "image_processing", "~> 1.2" # Use Active Storage variants [https://guides.r
 gem "jbuilder" # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "kamal", require: false # Deploy this application anywhere as a Docker container [https://kamal-deploy.org]
 gem "paper_trail"
-gem "pg", "~> 1.1" # Use postgresql as the database for Active Record
+gem "pg", "~> 1.6" # Use postgresql as the database for Active Record
 gem "propshaft" # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "puma", ">= 5.0" # Use the Puma web server [https://github.com/puma/puma]
 gem "rails", "~> 8.0.2" # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
