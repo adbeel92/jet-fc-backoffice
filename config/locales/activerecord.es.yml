@@ -58,9 +58,16 @@ es:
         attendance_records: "Asistentes"
       student_payment:
         amount: "Monto"
+        payment_method: "Método de pago"
         payment_type: "Tipo de pago"
         paid_on: "Fecha de pago"
         reference: "Referencia"
+        payment_methods:
+          cash: "Efectivo"
+          bank_transfer: "Transferencia bancaria"
+          credit_card: "Tarjeta de crédito"
+          debit_card: "Tarjeta de débito"
+          deposit: "Depósito"
       coach_payment:
         amount: "Monto"
         paid_on: "Fecha de pago"

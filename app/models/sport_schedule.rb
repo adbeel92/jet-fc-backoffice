@@ -41,7 +41,11 @@ class SportSchedule < ApplicationRecord
 
   def name
     if persisted?
-      "#{sport&.name} - #{day_of_week.capitalize} #{start_time.strftime('%H:%M')}"
+      if start_time
+        "(#{location&.name&.first(20)}) #{sport&.name} - #{day_of_week.capitalize} #{start_time.strftime('%H:%M')}"
+      else
+        "Sin hora de inicio"
+      end
     else
       "New Schedule"
     end

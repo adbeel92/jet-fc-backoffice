@@ -5,7 +5,7 @@ class StudentDebtCalculator
   def initialize(student)
     @student = student
     @enrollments = student.enrollments.select { |e| e.start_date.present? && e.price_per_period.to_f > 0 }
-    @payments = student.student_payments.sort_by(&:paid_on)
+    @payments = student.student_payments.with_subscription_period.sort_by(&:paid_on)
   end
 
   def period_statuses
